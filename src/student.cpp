@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <sstream>
-#include <conio.h>
 
 using namespace std;
 
@@ -278,7 +277,6 @@ int main() {
     cout << " Sesi selesai. Silakan ubah bagian ini untuk" << endl;
     cout << " mencoba percobaan Anda sendiri." << endl;
     cout << "==================================================" << endl;
-    getche();
     return 0;
 }
 
