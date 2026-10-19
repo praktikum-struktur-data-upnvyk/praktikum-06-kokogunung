@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <conio.h>
 
 using namespace std;
 
@@ -72,23 +73,55 @@ string display(const Queue& q) {
 // SOAL 1 — enqueue()                                                  35 poin
 // =============================================================================
 bool enqueue(Queue& q, int nomor) {
-    // TODO: kerjakan di sini
-    return false;
+     Node* new_node = new Node;
+     new_node->data = nomor;
+     new_node->next = nullptr;
+    if(q.depan == nullptr || q.belakang == nullptr){
+     q.depan = new_node;
+     q.belakang = new_node;
+     return true;
+    }
+    q.belakang->next = new_node;
+    q.belakang = new_node;
+    return true;
 }
 
 // =============================================================================
 // SOAL 2 — dequeue()                                                  40 poin
 // =============================================================================
 bool dequeue(Queue& q, int& nomor) {
-    // TODO: kerjakan di sini
-    return false;
+    Node* p_node = q.depan;
+    if(p_node == nullptr){
+     return false;
+    }
+    nomor = p_node->data;
+    if(p_node == q.belakang){
+     q.depan = nullptr;
+     q.belakang = nullptr;
+    }else{
+     q.depan = q.depan->next;
+    }
+    delete p_node;
+    return true;
 }
 
 // =============================================================================
 // SOAL 3 — clear()                                                    25 poin
 // =============================================================================
 void clear(Queue& q) {
-    // TODO: kerjakan di sini
+    Node* del_nd = q.depan;
+    Node* nav = q.depan;
+    if(nav == nullptr){
+     return;
+    }
+    while(nav->next != nullptr){
+     del_nd = nav;
+     nav = nav->next;
+     delete del_nd;
+    }
+    delete nav;
+    q.depan = nullptr;
+    q.belakang = nullptr;
 }
 
 // =============================================================================
@@ -245,7 +278,7 @@ int main() {
     cout << " Sesi selesai. Silakan ubah bagian ini untuk" << endl;
     cout << " mencoba percobaan Anda sendiri." << endl;
     cout << "==================================================" << endl;
-
+    getche();
     return 0;
 }
 
